@@ -1,0 +1,589 @@
+<html><head><base href="https://makeup-emporium.com/face">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flawless Face - Face Makeup Collection | Makeup Emporium</title>
+<style>
+  :root {
+    --primary-color: #ff4081;
+    --secondary-color: #fff0f5;
+    --accent-color: #ff85a2;
+    --text-color: #333;
+    --light-text: #777;
+  }
+  body {
+    font-family: 'Roboto', sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+  }
+  header {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+  }
+  nav ul li {
+    margin-left: 1.5rem;
+  }
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  nav ul li a:hover {
+    color: var(--primary-color);
+  }
+  .container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .hero {
+    background-image: url('face-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 6rem 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  .hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  .product-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+  .product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+  .product-info {
+    padding: 1rem;
+  }
+  .product-category {
+    font-size: 0.8rem;
+    color: var(--light-text);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .product-title {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem 0;
+  }
+  .product-description {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    margin-bottom: 1rem;
+  }
+  .product-price {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+  }
+  .btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .btn:hover {
+    background-color: var(--primary-color);
+  }
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    font-size: 2rem;
+  }
+  .filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .filter-btn {
+    background-color: white;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  .color-swatch {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .color-dot:hover {
+    transform: scale(1.2);
+  }
+  .product-features {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--light-text);
+  }
+  .product-feature {
+    display: flex;
+    align-items: center;
+  }
+  .product-feature svg {
+    margin-right: 0.25rem;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="https://makeup-emporium.com" class="logo">Makeup Emporium</a>
+      <nav>
+        <ul>
+          <li><a href="https://makeup-emporium.com/face">Face</a></li>
+          <li><a href="https://makeup-emporium.com/eyes">Eyes</a></li>
+          <li><a href="https://makeup-emporium.com/lips">Lips</a></li>
+          <li><a href="https://makeup-emporium.com/skincare">Skincare</a></li>
+          <li><a href="https://makeup-emporium.com/tools">Tools</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Flawless Face</h1>
+      <p>Discover our premium collection of face makeup to achieve a radiant, picture-perfect complexion.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="section-title">Face Makeup Collection</h2>
+    
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="foundation">Foundation</button>
+      <button class="filter-btn" data-filter="concealer">Concealer</button>
+      <button class="filter-btn" data-filter="powder">Powder</button>
+      <button class="filter-btn" data-filter="blush">Blush</button>
+      <button class="filter-btn" data-filter="bronzer">Bronzer</button>
+      <button class="filter-btn" data-filter="highlighter">Highlighter</button>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card" data-category="foundation">
+        <img src="https://replicate.delivery/yhqm/hg2mhHWTBeV1J6QsnMeWk0VSJrOZjkeWkcHhWf76CfdBNrtbC/out-0.webp" alt="Glass bottle of liquid foundation" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Foundation</div>
+          <h3 class="product-title">Flawless Finish Foundation</h3>
+          <p class="product-description">Long-wearing, buildable coverage for a natural, radiant finish.</p>
+          <p class="product-price">$34.99</p>
+          <div class="color-swatch">
+            <div class="color-dot" style="background-color: #F5DEB3;"></div>
+            <div class="color-dot" style="background-color: #D2B48C;"></div>
+            <div class="color-dot" style="background-color: #CD853F;"></div>
+            <div class="color-dot" style="background-color: #8B4513;"></div>
+          </div>
+          <div class="product-features">
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              SPF 30
+            </div>
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M2 12h20"></path>
+              </svg>
+              Oil-free
+            </div>
+          </div>
+          <a href="https://makeup-emporium.com/face/product/flawless-finish-foundation" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="concealer">
+        <img src="https://replicate.delivery/yhqm/efNIkagAi1jLwU1a2OmZhGiU1VnGUA7c3wDOB1vHiM8oZtdTA/out-0.webp" alt="Tube of concealer with applicator wand" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Concealer</div>
+          <h3 class="product-title">Bright Eyes Concealer</h3>
+          <p class="product-description">Creamy, high-coverage concealer to brighten and perfect.</p>
+          <p class="product-price">$24.99</p>
+          <div class="color-swatch">
+            <div class="color-dot" style="background-color: #FFDAB9;"></div>
+            <div class="color-dot" style="background-color: #F4A460;"></div>
+            <div class="color-dot" style="background-color: #D2691E;"></div>
+            <div class="color-dot" style="background-color: #8B4513;"></div>
+          </div>
+          <div class="product-features">
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+              </svg>
+              Crease-proof
+            </div>
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Hydrating
+            </div>
+          </div>
+          <a href="https://makeup-emporium.com/face/product/bright-eyes-concealer" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="powder">
+        <img src="https://replicate.delivery/yhqm/knAmvVCtZOKbBtAijLXixjgxyX3PHkpvTeAQVO3cyvy0s2uJA/out-0.webp" alt="Compact of pressed powder with mirror" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Powder</div>
+          <h3 class="product-title">Silk Finish Pressed Powder</h3>
+          <p class="product-description">Ultra-fine powder for a smooth, matte finish.</p>
+          <p class="product-price">$29.99</p>
+          <div class="color-swatch">
+            <div class="color-dot" style="background-color: #FAEBD7;"></div>
+            <div class="color-dot" style="background-color: #DEB887;"></div>
+            <div class="color-dot" style="background-color: #D2691E;"></div>
+            <div class="color-dot" style="background-color: #8B4513;"></div>
+          </div>
+          <div class="product-features">
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Oil-absorbing
+            </div>
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Talc-free
+            </div>
+          </div>
+          <a href="https://makeup-emporium.com/face/product/silk-finish-pressed-powder" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="blush">
+        <img src="https://replicate.delivery/yhqm/stRyhklQkt5QCxJKYkbPkSH3L9ukW2GQFxYgFs2Yqez0s2uJA/out-0.webp" alt="Round compact of pink blush" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Blush</div>
+          <h3 class="product-title">Rosy Glow Blush</h3>
+          <p class="product-description">Silky, buildable blush for a natural flush of color.</p>
+          <p class="product-price">$22.99</p>
+          <div class="color-swatch">
+            <div class="color-dot" style="background-color: #FFB6C1;"></div>
+            <div class="color-dot" style="background-color: #FF69B4;"></div>
+            <div class="color-dot" style="background-color: #DB7093;"></div>
+            <div class="color-dot" style="background-color: #C71585;"></div>
+          </div>
+          <div class="product-features">
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+              </svg>
+              Buildable
+            </div>
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Long-lasting
+            </div>
+          </div>
+          <a href="https://makeup-emporium.com/face/product/rosy-glow-blush" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="bronzer">
+        <img src="https://replicate.delivery/yhqm/o3jMRlK0kFK8GVm2LPQlCuUB3bVZ2Vz6FYbhcK4LpcaaWb3E/out-0.webp" alt="Compact of bronzing powder with brush" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Bronzer</div>
+          <h3 class="product-title">Sun-Kissed Bronzer</h3>
+          <p class="product-description">Matte bronzer for a natural, sun-kissed glow.</p>
+          <p class="product-price">$26.99</p>
+          <div class="color-swatch">
+            <div class="color-dot" style="background-color: #D2B48C;"></div>
+            <div class="color-dot" style="background-color: #DEB887;"></div>
+            <div class="color-dot" style="background-color: #CD853F;"></div>
+            <div class="color-dot" style="background-color: #8B4513;"></div>
+          </div>
+          <div class="product-features">
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Blendable
+            </div>
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Shimmer-free
+            </div>
+          </div>
+          <a href="https://makeup-emporium.com/face/product/sun-kissed-bronzer" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      <div class="product-card" data-category="highlighter">
+        <img src="https://replicate.delivery/yhqm/ohAIQ50dNxpOJd8JO4VwRo3tEWerUfzhRbtmQuqbmP0pZtdTA/out-0.webp" alt="Compact of shimmering highlighter" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Highlighter</div>
+          <h3 class="product-title">Glow Getter Highlighter</h3>
+          <p class="product-description">Luminous powder highlighter for a radiant glow.</p>
+          <p class="product-price">$27.99</p>
+          <div class="color-swatch">
+            <div class="color-dot" style="background-color: #FFF8DC;"></div>
+            <div class="color-dot" style="background-color: #FAFAD2;"></div>
+            <div class="color-dot" style="background-color: #FFE4B5;"></div>
+            <div class="color-dot" style="background-color: #FFDAB9;"></div>
+          </div>
+          <div class="product-features">
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+              </svg>
+              Intense glow
+            </div>
+            <div class="product-feature">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Long-wearing
+            </div>
+          </div>
+          <a href="https://makeup-emporium.com/face/product/glow-getter-highlighter" class="btn">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Eye Makeup Collection</h2>
+    
+    <div class="filters">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="eyeshadow">Eyeshadow</button>
+      <button class="filter-btn" data-category="eyeliner">Eyeliner</button>
+      <button class="filter-btn" data-category="mascara">Mascara</button>
+      <button class="filter-btn" data-category="brows">Brows</button>
+    </div>
+    
+    <div class="product-grid">
+      <div class="product-card" data-category="eyeshadow">
+        <img src="https://page-images.websim.ai/Colorful%20eyeshadow%20palette%20with%20various%20shimmery%20and%20matte%20shades_250x250xha4iTsVBnsRAbvuhox27e5c74fe7d11.jpg" alt="Colorful eyeshadow palette with various shimmery and matte shades" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Eyeshadow</div>
+          <h3 class="product-name">Enchanted Forest Palette</h3>
+          <p class="product-description">A stunning palette with 12 mystical shades inspired by nature.</p>
+          <p class="product-price">$45.99</p>
+          <a href="https://makeup-emporium.com/eyes/product/enchanted-forest-palette" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="eyeliner">
+        <img src="https://page-images.websim.ai/Black%20liquid%20eyeliner%20with%20fine%20tip%20applicator_250x250xha4iTsVBnsRAbvuhox6bab289be6dc5.jpg" alt="Black liquid eyeliner with fine tip applicator" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Eyeliner</div>
+          <h3 class="product-name">Precision Liquid Liner</h3>
+          <p class="product-description">Create sharp, precise lines with our long-lasting liquid eyeliner.</p>
+          <p class="product-price">$18.99</p>
+          <a href="https://makeup-emporium.com/eyes/product/precision-liquid-liner" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="mascara">
+        <img src="https://page-images.websim.ai/Black%20mascara%20tube%20with%20curved%20brush_250x250xha4iTsVBnsRAbvuhox35d0eb6972be.jpg" alt="Black mascara tube with curved brush" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Mascara</div>
+          <h3 class="product-name">Voluminous Lash Boost</h3>
+          <p class="product-description">Achieve dramatic, full lashes with our volumizing mascara.</p>
+          <p class="product-price">$22.99</p>
+          <a href="https://makeup-emporium.com/eyes/product/voluminous-lash-boost" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="brows">
+        <img src="https://page-images.websim.ai/Small%20jar%20of%20brow%20pomade%20with%20angled%20brush_250x250xha4iTsVBnsRAbvuhoxa3166cc557b02.jpg" alt="Small jar of brow pomade with angled brush" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Brows</div>
+          <h3 class="product-name">Sculpt & Define Brow Pomade</h3>
+          <p class="product-description">Shape and fill your brows with our long-wearing, waterproof pomade.</p>
+          <p class="product-price">$16.99</p>
+          <a href="https://makeup-emporium.com/eyes/product/sculpt-define-brow-pomade" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="eyeshadow">
+        <img src="https://page-images.websim.ai/Metallic%20cream%20eyeshadow%20in%20a%20small%20pot_250x250xha4iTsVBnsRAbvuhoxbf8d32306e68a.jpg" alt="Metallic cream eyeshadow in a small pot" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Eyeshadow</div>
+          <h3 class="product-name">Shimmer Cream Shadow</h3>
+          <p class="product-description">Long-lasting, crease-resistant cream eyeshadow with intense shimmer.</p>
+          <p class="product-price">$14.99</p>
+          <a href="https://makeup-emporium.com/eyes/product/shimmer-cream-shadow" class="btn">Add to Cart</a>
+        </div>
+      </div>
+      
+      <div class="product-card" data-category="eyeliner">
+        <img src="https://page-images.websim.ai/Black%20gel%20eyeliner%20in%20a%20small%20glass%20jar%20with%20brush_250x250xha4iTsVBnsRAbvuhox084985f11094b.jpg" alt="Black gel eyeliner in a small glass jar with brush" class="product-image" width="250" height="250">
+        <div class="product-info">
+          <div class="product-category">Eyeliner</div>
+          <h3 class="product-name">Smudge-Proof Gel Liner</h3>
+          <p class="product-description">Create bold, smudge-proof lines with our long-wearing gel eyeliner.</p>
+          <p class="product-price">$20.99</p>
+          <a href="https://makeup-emporium.com/eyes/product/smudge-proof-gel-liner" class="btn">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <footer>
+    <p>&copy; 2023 Makeup Emporium. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const productCards = document.querySelectorAll('.product-card');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const filter = button.dataset.filter;
+          
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+
+          productCards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Color swatch functionality
+      const colorDots = document.querySelectorAll('.color-dot');
+      colorDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const color = dot.style.backgroundColor;
+          const productCard = dot.closest('.product-card');
+          const productImage = productCard.querySelector('.product-image');
+          productImage.style.border = `3px solid ${color}`;
+        });
+      });
+
+      // Add hover effect to product cards
+      productCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'scale(1.05)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'scale(1)';
+        });
+      });
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
